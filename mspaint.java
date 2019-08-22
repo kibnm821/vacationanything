@@ -10,11 +10,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
  
 public class mspaint extends JFrame implements MouseMotionListener {
-    // JFrame 상속하고, MouseMotionListener 를 구현함
+    // JFrame 상속, MouseMotionListener 구현
  
     Image image;
     Graphics graphics;
-    JButton jb1 = new ColorButton(); // 색을 바꾸는 버튼 설치, 상속과 다형성 개념 활용
+    JButton jb1 = new ColorButton(); // 색버튼, 상속 다형성
     JButton jb2 = new ColorButton();
     JButton jb3 = new ColorButton();
     JButton jb4 = new ColorButton();
@@ -24,7 +24,7 @@ public class mspaint extends JFrame implements MouseMotionListener {
     JButton jb8 = new ColorButton();
  
     public mspaint() { // 생성자
-        setBounds(100, 100, 800, 850); // 그림판 틀 만들기
+        setBounds(100, 100, 800, 850); // 그림판 틀
         setLayout(null);
         jb1.setBackground(Color.BLUE);
         jb1.setBounds(0, 0, 100, 100);
@@ -60,31 +60,31 @@ public class mspaint extends JFrame implements MouseMotionListener {
  
         graphics.setColor(Color.black);
         repaint(); // paint 메소드를 호출
-        addMouseMotionListener(this); // 마우스모션을 그림판과 연결
+        addMouseMotionListener(this); // 마우스모션 그림판 연결
     }
  
     class ColorButton extends JButton implements ActionListener { 
-        //JButton 을 상속하는 자녀 클래스로 이너 클래스 설정, 액션 리스너를 구현함
+        //JButton 상속 자녀 클래스 이너 클래스, 액션 리스너
         public ColorButton() {
             addActionListener(this); //액션리스너 호출
         }
  
         @Override
         public void actionPerformed(ActionEvent e) {
-            graphics.setColor(getBackground()); // 배경색을 따서 글자색으로 설정
+            graphics.setColor(getBackground()); // 배경색 글자색
             
         }
     }
 
     @Override
     public void paint(Graphics g) {
-        // TODO Auto-generated method stub
-//         super.paint(g); // 그림판이 깜빡이듯 나타나는 현상을 막기 위해 블락 처리
-        g.drawImage(image, 110, 0, this); // 위에서 설정한 도화지 이미지를 그림판의 틀에 띄우기
+
+//         super.paint(g); // 그림판이 깜빡임
+        g.drawImage(image, 110, 0, this); // 설정한 도화지 그림판 끼움
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+        
         new mspaint();
     }
  
@@ -92,7 +92,7 @@ public class mspaint extends JFrame implements MouseMotionListener {
  
     @Override
     public void mouseDragged(MouseEvent e) {
-        // TODO Auto-generated method stub
+        
  
         if (e.getModifiersEx() == MouseEvent.BUTTON1_DOWN_MASK) {
             graphics.drawLine(x, y, e.getX() - 110, e.getY());
@@ -110,7 +110,7 @@ public class mspaint extends JFrame implements MouseMotionListener {
  
     @Override
     public void mouseMoved(MouseEvent e) {
-        // TODO Auto-generated method stub
+        
         x = e.getX() - 110;
         y = e.getY();
     }
